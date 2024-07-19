@@ -1,25 +1,49 @@
-// src/components/PropertyCard.js
-import React from 'react';
-import { FaHeart, FaBath, FaBed } from 'react-icons/fa';
+import React from "react";
+import { FaHeart, FaBath } from "react-icons/fa";
+import { MdLocationOn } from "react-icons/md";
+import { IoBedOutline } from "react-icons/io5";
+import { GiBathtub } from "react-icons/gi";
+import { GoShareAndroid } from "react-icons/go";
+import { BiTransfer } from "react-icons/bi";
+import { IoIosHeartEmpty } from "react-icons/io";
 
 const PropertyCard = ({ property }) => {
   return (
-    <div className="border rounded-lg overflow-hidden shadow-lg">
-      <img src={property.image} alt={property.title} className="w-full h-56 object-cover" />
-      <div className="p-4">
-        <h3 className="text-lg font-semibold">{property.title}</h3>
-        <p className="text-gray-600">{property.location}</p>
-        <p className="mt-2 text-xl font-bold">{property.price}</p>
-        <div className="flex justify-between items-center mt-4">
+    <div className="border rounded-lg overflow-hidden shadow-lg min-h-[540px]">
+      <div
+        className="relative w-full h-[297px] bg-cover bg-center"
+        style={{ backgroundImage: `url(${property.image})` }}
+      >
+        <div className="absolute inset-0 bg-black opacity-25"></div>
+        <div className="relative h-full w-full flex flex-col justify-between p-4">
+          <div className="flex justify-between">
+            <button className="p-2 px-3 rounded-sm bg-[#3D9970] text-white">Featured</button>
+            <button className="p-2 text-white bg-[#D3D3D3B2] rounded-sm">{property.availability}</button>
+          </div>
+        </div>
+      </div>
+      <div className="p-4 px-6 space-y-4">
+        <h3 className="text-xl font-semibold">{property.title}</h3>
+        <p className="text-[#666666] flex items-center gap-2">
+          <MdLocationOn /> {property.location}
+        </p>
+        <div className="flex gap-8 text-[#666666] items-center mt-4">
           <div className="flex items-center space-x-2">
-            <FaBed className="text-gray-600" />
-            <span>{property.bedrooms}</span>
+            <IoBedOutline />
+            <span>{property.bedrooms} Bedrooms</span>
           </div>
           <div className="flex items-center space-x-2">
-            <FaBath className="text-gray-600" />
-            <span>{property.bathrooms}</span>
+            <GiBathtub />
+            <span>{property.bathrooms} Bathrooms</span>
           </div>
-          <FaHeart className="text-gray-600" />
+        </div>
+        <div className="flex border-t h-[90px] items-center justify-between">
+          <p className="mt-2 text-xl font-bold ">
+            N{property.price.toLocaleString()}{property.availability === 'For Rent' && '/1 Year'}
+          </p>
+          <BiTransfer className="text-2xl text-[#666666]" />
+          <GoShareAndroid className="text-2xl text-[#666666]" />
+          <IoIosHeartEmpty className="text-2xl text-[#666666]" />
         </div>
       </div>
     </div>

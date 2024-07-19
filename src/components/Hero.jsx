@@ -21,13 +21,13 @@ const Hero = () => {
               {/* Location */}
               <div className="flex flex-col items-center border-r border-[#CAD4DE]">
                 <p className="font-semibold">LOCATION</p>
-                <p className="text-gray-400">eg. Gbagada</p>
+                <p className="text-gray-400 text-sm xl:text-lg">eg. Gbagada</p>
               </div>
 
               {/* Property Type */}
               <div className="flex flex-col items-center border-r border-[#CAD4DE]">
                 <p className="font-semibold">PROPERTY TYPE</p>
-                <p className="text-gray-400">eg. Duplex, Bedroom Flat</p>
+                <p className="text-gray-400 text-sm xl:text-lg">eg. Duplex, Bedroom Flat</p>
               </div>
 
               {/* Bedroom */}
