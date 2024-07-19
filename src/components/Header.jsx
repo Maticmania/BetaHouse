@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaChevronDown, FaChevronUp, FaBars, FaTimes } from "react-icons/fa";
-import profile from '../assets/image.png';
-import {Link, useNavigate} from 'react-router-dom'
+import profile from '../assets/image.png'; // Update the image path as needed
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/Auth';
 
 const Header = () => {
@@ -9,7 +9,6 @@ const Header = () => {
   const [headerClass, setHeaderClass] = useState('h-[120px] w-full flex justify-between items-center px-4 md:px-8 backdrop-blur-sm fixed');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { auth, logout } = useAuth();
-
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -68,7 +67,7 @@ const Header = () => {
               className="inline-flex justify-center items-center gap-2 w-full rounded-md shadow-sm px-4 py-2 text-xl font-medium"
               onClick={toggleDropdown}
             >
-              {auth?.user ? auth.user.name : "My Account"}
+              {auth?.user ? auth?.user?.firstName : "My Account"}
               {isOpen ? <FaChevronUp /> : <FaChevronDown />}
             </button>
           </div>
@@ -76,19 +75,16 @@ const Header = () => {
             <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
               <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                 {
-                  !auth.user ? (
+                  auth?.user ? (
                     <div>
-                      <Link to='/register' className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Sign up</Link>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">License</a>
-                    </div>
-                  ): 
-                  (
-                    <div>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Account settings</a>
                       <Link onClick={handleLogout} to='/' className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Sign out</Link>
                     </div>
-                  
-                )
+                  ) : (
+                    <div>
+                      <Link to='/login' className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Login</Link>
+                      <Link to='/register' className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Sign up</Link>
+                    </div>
+                  )
                 }
               </div>
             </div>
@@ -105,22 +101,40 @@ const Header = () => {
               <li className='h-[50px] flex items-center cursor-pointer'>Blog</li>
               <li className='h-[50px] flex items-center cursor-pointer'>Contact Us</li>
             </ul>
-            <div className='flex items-center'>
-            <img src={profile} alt="name" className='h-[50px] object-fit rounded-full hidden xl:block' />
-            <button
-              type="button"
-              className="inline-flex justify-center items-center gap-2 w-full rounded-md shadow-sm px-4 py-2 text-xl font-medium"
-              onClick={toggleDropdown}
-            >
-              Matic Mania
-              {isOpen ? <FaChevronUp /> : <FaChevronDown />}
-            </button>
-          </div>
+            <div className='flex items-center p-4'>
+              <img src={profile} alt="name" className='h-[50px] object-fit rounded-full' />
+              <button
+                type="button"
+                className="inline-flex justify-center items-center gap-2 w-full rounded-md shadow-sm px-4 py-2 text-xl font-medium"
+                onClick={toggleDropdown}
+              >
+                {auth?.user ? auth?.user?.firstName : "My Account"}
+                {isOpen ? <FaChevronUp /> : <FaChevronDown />}
+              </button>
+            </div>
+            {isOpen && (
+              <div className="w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 mt-2">
+                <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                  {
+                    auth?.user ? (
+                      <div>
+                        <Link onClick={handleLogout} to='/' className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Sign out</Link>
+                      </div>
+                    ) : (
+                      <div>
+                        <Link to='/login' className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Login</Link>
+                        <Link to='/register' className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Sign up</Link>
+                      </div>
+                    )
+                  }
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
     </>
   );
-}
+};
 
 export default Header;

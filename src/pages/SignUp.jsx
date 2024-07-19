@@ -46,18 +46,13 @@ import { useAuth } from '../context/Auth';
   
       if (Object.keys(validationErrors).length === 0) {
         try {
-          const formDataToSend = new FormData();
-          formDataToSend.append("firstName", formData.firstName);
-          formDataToSend.append("lastName", formData.lastName);
-          formDataToSend.append("email", formData.email);
-          formDataToSend.append("password", formData.password);
   
-          const data = await signup(formDataToSend);
-  
+          const data = await signup(formData);
+          console.log(formData);
           if (!data?.error) {
             toast.success("Registration successful");
             setTimeout(() => {
-              navigate("/");
+              navigate("/home");
             }, 5000);
           } else {
             toast.error("Registration failed");

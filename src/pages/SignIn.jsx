@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/Auth';
 import toast from 'react-hot-toast';
 
@@ -10,6 +10,8 @@ const SignIn = () => {
     password: '',
     rememberMe: false,
   });
+  const navigate = useNavigate();
+
 
   const { login } = useAuth();
 
@@ -40,15 +42,15 @@ const SignIn = () => {
       console.log('Form submitted:', formData);
       try {
        
-        const data = await login(formData.email);
+        const data = await login(formData);
 
         if (!data?.error) {
-          toast.success("Registration successful");
+          toast.success("Login successful");
           setTimeout(() => {
-            navigate("/");
-          }, 5000);
+            navigate("/home");
+          }, 1000);
         } else {
-          toast.error("Registration failed");
+          toast.error("Login failed");
         }
       } catch (err) {
         console.log(err);

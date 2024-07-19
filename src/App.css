@@ -12,8 +12,8 @@ body{
     background-position: top;
 }
 .hero{
-    background-image: url(./assets/images/hero.jpeg);
-    background-position:center;
+    background-image: url(./assets/images/Hero.jpeg);
+    background-position: center;
 }
 .logo{
     height: 48px;
@@ -22,14 +22,14 @@ body{
     color: white;
     border-radius: 50%;
     font-size: 22px;
-    font-size: Poppins;
+    font-size: 'Poppins';
     font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .logo-text{
-    font-family: Poppins;
+    font-family: 'Poppins';
     font-weight: 500;
     font-size: 28px;
     color: white;

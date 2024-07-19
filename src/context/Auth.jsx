@@ -19,20 +19,21 @@ const AuthProvider = ({ children }) => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${auth?.token}`;
   }, [auth?.token]);
 
-  // Retrieve the user from local storage
-  useEffect(() => {
-    const data = localStorage.getItem("auth");
-    if (data) {
-      const parsedData = JSON.parse(data);
-      setAuth({ ...auth, user: parsedData.user, token: parsedData.token });
-    }
-  }, []);
+    // retrieve the user from local storage
+    useEffect(() => {
+      const data = localStorage.getItem("auth");
+      if (data) {
+        const parsedData = JSON.parse(data);
+        setAuth({ ...auth, user: parsedData.user, token: parsedData.token });
+      }
+    }, []);
 
-  const login = async (identifier, password) => {
+
+  const login = async (formData) => {
     try {
       const { data } = await axios.post("/auth/login", {
-        identifier,
-        password,
+        email: formData.email,
+        password: formData.password,
       });
 
       if (!data?.error) {
@@ -45,9 +46,9 @@ const AuthProvider = ({ children }) => {
         return false;
       }
     } catch (error) {
-      console.log("Login error:", error);
-      if (error?.response && error?.response?.data && error?.response?.data?.error) {
-        throw new Error(error?.response?.data?.error);
+      console.log("Login error:", error?.response?.data?.message);
+      if (error?.response && error?.response?.data && error?.response?.data?.message) {
+        throw new Error(error?.response?.data?.message);
       } else {
         throw new Error("An error occurred while logging in");
       }
@@ -57,10 +58,11 @@ const AuthProvider = ({ children }) => {
   // Signup function
   const signup = async (formData) => {
     try {
-      const { data } = await axios.post("/auth/register", formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+      const { data } = await axios.post("/auth/register", {
+       firstName: formData.firstName,
+       lastName: formData.lastName,
+       email: formData.email,
+       password: formData.password
       });
 
       if (!data.error) {
@@ -77,10 +79,10 @@ const AuthProvider = ({ children }) => {
       return data;
     } catch (error) {
       console.log("Signup Error:", error);
-      if (error?.response && error?.response?.data && error?.response?.data?.error) {
-        throw new Error(error?.response?.data?.error);
+      if (error?.response && error?.response?.data && error?.response?.data?.message) {
+        throw new Error(error?.response?.data?.message);
       } else {
-        throw new Error("An error occurred while signing up", error);
+        throw new Error("An error occurred while logging in");
       }
     }
   };
