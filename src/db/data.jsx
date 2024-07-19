@@ -104,3 +104,78 @@ export const properties = [
     // Add more property objects as needed
   ];
   
+export  const popularDb = [
+    {
+      title: "Semi Detached Duplex",
+      price: 1430000000,
+      bedrooms: 6,
+      bathrooms: 3,
+      size: 720,
+      location: "Victoria Island, Lagos",
+      image: product1,
+    },
+    
+    {
+      title: "Split-Level House",
+      price: 340000000,
+      bedrooms: 6,
+      bathrooms: 3,
+      size: 720,
+      location: "Victoria Island, Lagos",
+      image: product1,
+    },
+    {
+      title: "Split-Level House",
+      price: 340000000,
+      bedrooms: 6,
+      bathrooms: 3,
+      size: 720,
+      location: "Victoria Island, Lagos",
+      image: product5,
+    },
+    {
+      title: "Split-Level House",
+      price: 340000000,
+      bedrooms: 6,
+      bathrooms: 3,
+      size: 720,
+      location: "Victoria Island, Lagos",
+      image: product2,
+    },
+    {
+      title: "Split-Level House",
+      price: 340000000,
+      bedrooms: 6,
+      bathrooms: 3,
+      size: 720,
+      location: "Victoria Island, Lagos",
+      image: product4,
+    },
+    {
+      title: "Split-Level House",
+      price: 340000000,
+      bedrooms: 6,
+      bathrooms: 3,
+      size: 720,
+      location: "Victoria Island, Lagos",
+      image: product3,
+    },
+    {
+      title: "Split-Level House",
+      price: 340000000,
+      bedrooms: 6,
+      bathrooms: 3,
+      size: 720,
+      location: "Victoria Island, Lagos",
+      image: product2,
+    },{
+        title: "Special Duplex",
+        price: 670000000,
+        bedrooms: 6,
+        bathrooms: 3,
+        size: 720,
+        location: "Victoria Island, Lagos",
+        image: product1,
+      },
+   
+  ];

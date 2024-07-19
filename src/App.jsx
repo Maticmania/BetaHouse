@@ -6,6 +6,7 @@ import SignIn from "./pages/SignIn";
 import Home from "./pages/Home";
 import toast, { Toaster } from 'react-hot-toast';
 import Profile from "./components/Profile";
+import UserProfile from "./components/Profile";
 
 
 
@@ -21,7 +22,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/" element={<SignIn />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<UserProfile />} />
         </Routes>
       </BrowserRouter>
     </>
