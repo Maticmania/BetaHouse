@@ -1,3 +1,4 @@
+// src/context/AuthContext.js
 import { useState, createContext, useContext, useEffect } from "react";
 import axios from "axios";
 
@@ -19,15 +20,14 @@ const AuthProvider = ({ children }) => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${auth?.token}`;
   }, [auth?.token]);
 
-    // retrieve the user from local storage
-    useEffect(() => {
-      const data = localStorage.getItem("auth");
-      if (data) {
-        const parsedData = JSON.parse(data);
-        setAuth({ ...auth, user: parsedData.user, token: parsedData.token });
-      }
-    }, []);
-
+  // Retrieve the user from local storage
+  useEffect(() => {
+    const data = localStorage.getItem("auth");
+    if (data) {
+      const parsedData = JSON.parse(data);
+      setAuth({ ...auth, user: parsedData.user, token: parsedData.token });
+    }
+  }, []);
 
   const login = async (formData) => {
     try {
@@ -55,7 +55,6 @@ const AuthProvider = ({ children }) => {
     } 
   };
 
-  // Signup function
   const signup = async (formData) => {
     try {
       const { data } = await axios.post("/auth/register", {

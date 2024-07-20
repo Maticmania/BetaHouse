@@ -7,6 +7,7 @@ import { useAuth } from '../context/Auth';
   const SignUp = () => {
     const navigate = useNavigate();
     const { signup } = useAuth();
+    const [loading, setloading] = useState(false)
     const [formData, setFormData] = useState({
       firstName: 'olaitan',
       lastName: 'Toheeb',
@@ -46,7 +47,8 @@ import { useAuth } from '../context/Auth';
   
       if (Object.keys(validationErrors).length === 0) {
         try {
-  
+          
+          setloading(true)
           const data = await signup(formData);
           console.log(formData);
           if (!data?.error) {
@@ -60,6 +62,8 @@ import { useAuth } from '../context/Auth';
         } catch (err) {
           console.log(err);
           toast.error(err.message);
+        }finally{
+          setloading(false)
         }
       }
     };
@@ -152,8 +156,10 @@ import { useAuth } from '../context/Auth';
             </div>
             {errors.termsAccepted && <p className="text-red-500 text-sm">{errors.termsAccepted}</p>}
             <div>
-              <button type="submit" className="w-full flex justify-center py-4 px-4 border border-transparent rounded-2xl shadow-sm text-lg font-medium text-white bg-green-700 hover:bg-green-800 ">
-                Sign up
+              <button type="submit" className="w-full flex justify-center py-4 px-4 border border-transparent rounded-2xl shadow-sm text-lg font-medium text-white bg-green-700 hover:bg-green-800 "
+               disabled={loading}
+              >
+                {loading ? 'Creating an account...' : ' Sign Up' }
               </button>
             </div>
           </form>

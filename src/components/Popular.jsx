@@ -4,7 +4,7 @@ import PropertyCarousel from "./PorpularCaro";
 
 const Popular = () => {
   return (
-    <div>
+    <div id="popular">
       <PropertyCarousel properties={popularDb} />
     </div>
   )

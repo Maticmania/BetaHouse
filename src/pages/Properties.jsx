@@ -21,7 +21,7 @@ const Properties = () => {
   };
 
   return (
-    <div>
+    <div id="properties">
       <div className="mt-[40px] xl:px-20">
         <FilterBar />
         <div className="grid grid-cols-1 sm:grid-cols-[minmax(395px,_1fr)] md:grid-cols-2 lg:grid-cols-3 gap-8 p-8">

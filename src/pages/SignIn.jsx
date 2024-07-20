@@ -11,6 +11,7 @@ const SignIn = () => {
     rememberMe: false,
   });
   const navigate = useNavigate();
+  const [loading, setloading] = useState(false)
 
 
   const { login } = useAuth();
@@ -38,10 +39,8 @@ const SignIn = () => {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      // Submit form
-      console.log('Form submitted:', formData);
       try {
-       
+        setloading(true)
         const data = await login(formData);
 
         if (!data?.error) {
@@ -55,6 +54,8 @@ const SignIn = () => {
       } catch (err) {
         console.log(err);
         toast.error(err.message);
+      }finally{
+        setloading(false)
       }
 
     }
@@ -107,8 +108,10 @@ const SignIn = () => {
             <div className='text-red-400'><a href="/forget-password">Forget password</a></div>
             </div>
             <div>
-              <button type="submit" className="w-full flex justify-center py-4 px-4 border border-transparent rounded-2xl shadow-sm text-lg font-medium text-white bg-green-700 hover:bg-green-800">
-                Sign In
+              <button type="submit" className="w-full flex justify-center py-4 px-4 border border-transparent rounded-2xl shadow-sm text-lg font-medium text-white bg-green-700 hover:bg-green-800"
+              disabled={loading}
+              >
+               {loading ? 'Signing In...' : ' Sign In' } 
               </button>
             </div>
           </form>

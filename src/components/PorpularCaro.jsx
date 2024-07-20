@@ -1,8 +1,8 @@
 import React from 'react';
 import Slider from 'react-slick';
-import PropertyCard from './PropertyCard';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import PopularCard from './PopularCard';
 
 // Custom Next Arrow Component
 const SampleNextArrow = (props) => {
@@ -71,12 +71,12 @@ const PropertyCarousel = ({ properties }) => {
   };
 
   return (
-    <div className="container py-8 px-4 md:px-10 xl:px-20 ">
+    <div className="py-8 px-4 md:px-10 xl:px-20 ">
       <h2 className=" text-2xl md:text-5xl font-semibold text-center  mb-12">Discover Our Popular Properties</h2>
       <Slider {...settings} className="gap-8">
         {properties.map((property) => (
           <div key={property.id} className="px-2"> {/* Add padding to the individual slides */}
-            <PropertyCard property={property} />
+            <PopularCard property={property} />
           </div>
         ))}
       </Slider>

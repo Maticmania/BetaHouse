@@ -7,9 +7,9 @@ import axios from "axios";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userData, setUserData] = useState({});
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [image, setImage] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [image, setImage] = useState("");
   const [headerClass, setHeaderClass] = useState(
     "h-[120px] w-full flex justify-between items-center px-4 md:px-8 backdrop-blur-sm fixed z-50 container mx-auto"
   );
@@ -27,16 +27,17 @@ const Header = () => {
     }
 
     if (userId) {
-      axios.get(`auth/user/${userId}`)
-        .then(response => {
+      axios
+        .get(`auth/user/${userId}`)
+        .then((response) => {
           const user = response?.data?.user;
           setUserData(user);
           setFirstName(user?.firstName);
           setLastName(user?.lastName);
           setImage(user?.image);
         })
-        .catch(error => {
-          console.error('There was an error fetching the user data!', error);
+        .catch((error) => {
+          console.error("There was an error fetching the user data!", error);
         });
     }
   }, [auth, userId]);
@@ -82,11 +83,27 @@ const Header = () => {
           <p className="logo-text md:hidden xl:block">BetaHouse</p>
         </div>
         <ul className="hidden md:flex gap-8 md:gap-4 xl:gap-8 font-medium text-xl md:text-lg xl:text-xl">
-          <li className="h-[50px] flex items-center cursor-pointer">Home</li>
-          <li className="h-[50px] flex items-center border-b border-gray-200 cursor-pointer">Properties</li>
-          <li className="h-[50px] flex items-center cursor-pointer">About Us</li>
-          <li className="h-[50px] flex items-center cursor-pointer">Blog</li>
-          <li className="h-[50px] flex items-center cursor-pointer">Contact Us</li>
+          <a href="#">
+            <li className="h-[50px] flex items-center cursor-pointer">Home</li>
+          </a>
+          <a href="#properties">
+            <li className="h-[50px] flex items-center border-b border-gray-200 cursor-pointer">
+              Properties
+            </li>
+          </a>
+          <a href="#footer">
+            <li className="h-[50px] flex items-center cursor-pointer">
+              About Us
+            </li>
+          </a>
+          <a href="#popular">
+            <li className="h-[50px] flex items-center cursor-pointer">Blog</li>
+          </a>
+          <a href="#footer">
+            <li className="h-[50px] flex items-center cursor-pointer">
+              Contact Us
+            </li>
+          </a>
         </ul>
         <div className="flex items-center md:hidden">
           <button onClick={toggleSidebar} className="text-2xl">
@@ -113,7 +130,12 @@ const Header = () => {
           </div>
           {isOpen && (
             <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-              <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+              <div
+                className="py-1"
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="options-menu"
+              >
                 {auth?.user ? (
                   <div>
                     <Link
@@ -162,11 +184,21 @@ const Header = () => {
         >
           <div className="fixed top-0 left-0 h-full w-64 bg-white text-black shadow-lg z-50">
             <ul className="flex flex-col gap-8 font-medium text-xl p-4">
-              <li className="h-[50px] flex items-center cursor-pointer">Home</li>
-              <li className="h-[50px] flex items-center border-b border-gray-200 cursor-pointer">Properties</li>
-              <li className="h-[50px] flex items-center cursor-pointer">About Us</li>
-              <li className="h-[50px] flex items-center cursor-pointer">Blog</li>
-              <li className="h-[50px] flex items-center cursor-pointer">Contact Us</li>
+              <li className="h-[50px] flex items-center cursor-pointer">
+                Home
+              </li>
+              <li className="h-[50px] flex items-center border-b border-gray-200 cursor-pointer">
+                Properties
+              </li>
+              <li className="h-[50px] flex items-center cursor-pointer">
+                About Us
+              </li>
+              <li className="h-[50px] flex items-center cursor-pointer">
+                Blog
+              </li>
+              <li className="h-[50px] flex items-center cursor-pointer">
+                Contact Us
+              </li>
             </ul>
             <div className="flex items-center p-4">
               {image && (
@@ -187,7 +219,12 @@ const Header = () => {
             </div>
             {isOpen && (
               <div className="w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 mt-2">
-                <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                <div
+                  className="py-1"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="options-menu"
+                >
                   {auth?.user ? (
                     <div>
                       <Link

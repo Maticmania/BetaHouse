@@ -55,7 +55,7 @@ const PropertyCard = ({ property }) => {
         </div>
         <div className="flex border-t h-[90px] items-center justify-between">
           <p className="mt-2 text-xl font-bold ">
-            N{property.price.toLocaleString()}
+            &#x20A6;{property.price.toLocaleString()}
             {property.availability === "For Rent" && "/1 Year"}
           </p>
           <BiTransfer className="text-2xl text-[#666666]" />

@@ -4,11 +4,11 @@ import { MdLocationOn, MdPhone, MdEmail } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#035A33] text-white py-8 px-4 xl:px-20">
-      <div className="flex justify-between flex-wrap gap-8">
+    <footer className="bg-[#035A33] text-white py-8 px-4 xl:px-20 xl:min-h-[540px] flex flex-col justify-evenly" id="footer">
+      <div className="flex justify-between flex-wrap gap-8 items-center">
         {/* Logo and Description */}
         <div className="w-[390px]">
-          <div className="flex items-center gap-2 mb-4 ">
+          <div className="flex items-center gap-2 mb-4">
             <span className="logo">BH</span>
             <span className="logo-text">BetaHouse</span>
           </div>
