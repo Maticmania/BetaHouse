@@ -17,6 +17,9 @@ const UserProfile = () => {
   });
   const [preview, setPreview] = useState("");
   const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
   const [passwords, setPasswords] = useState({
     currentPassword: "",
     newPassword: "",
@@ -90,21 +93,27 @@ const UserProfile = () => {
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
+
+    if (passwords.newPassword !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
     axios
       .put("auth/user/update", passwords)
       .then((response) => {
         toast.success("Password updated successfully");
         setShowPasswordModal(false);
         setPasswords({ currentPassword:"", newPassword: "" });
+        setConfirmPassword("");
       })
       .catch((error) => {
         console.log(error?.response?.data?.message);
         console.log("Error updating the password!", error);
         if (error?.response?.data?.success === false) {
             toast.error(error?.response?.data?.message);
-        }else{
+        } else {
             toast.error("There was an error updating the password!");
-
         }
       });
   };
@@ -117,7 +126,7 @@ const UserProfile = () => {
             Update Profile
           </h2>
           <form>
-            <div className="mb-6 text-center">
+            <div className="mb-4 flex items-center flex-col">
               {preview && (
                 <img
                   src={preview}
@@ -129,7 +138,7 @@ const UserProfile = () => {
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}
-                className="mt-1 p-2 block w-full border border-gray-300 cursor-pointer"
+                className="mt-1 p-1 block w-2/5 border border-gray-300 cursor-pointer"
               />
               <label className="block text-sm font-medium text-gray-700 mt-2">
                 Profile Picture
@@ -194,11 +203,12 @@ const UserProfile = () => {
                   Current Password
                 </label>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="currentPassword"
                   value={passwords.currentPassword}
                   onChange={handlePasswordChange}
                   className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+                  placeholder="Current Password"
                   required
                 />
               </div>
@@ -207,13 +217,39 @@ const UserProfile = () => {
                   New Password
                 </label>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="newPassword"
                   value={passwords.newPassword}
                   onChange={handlePasswordChange}
                   className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+                  placeholder="New Password"
                   required
                 />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Confirm New Password
+                </label>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="confirmPassword"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+                  placeholder="Confirm New Password"
+                  required
+                />
+              </div>
+              <div className="mb-4 flex items-center">
+                <input
+                  type="checkbox"
+                  checked={showPassword}
+                  onChange={() => setShowPassword(!showPassword)}
+                  className="mr-2"
+                />
+                <label className="text-sm font-medium text-gray-700">
+                  Show Password
+                </label>
               </div>
               <div className="flex justify-between">
                 <button

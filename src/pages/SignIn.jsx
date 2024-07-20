@@ -91,6 +91,7 @@ const SignIn = () => {
               />
               {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
             </div>
+            <div className="flex items-center justify-between">
             <div className="flex items-center">
               <input
                 type="checkbox"
@@ -102,6 +103,8 @@ const SignIn = () => {
               <label htmlFor="rememberMe" className="ml-2 block text-lg text-gray-700">
                 Remember me
               </label>
+              </div>
+            <div className='text-red-400'><a href="/forget-password">Forget password</a></div>
             </div>
             <div>
               <button type="submit" className="w-full flex justify-center py-4 px-4 border border-transparent rounded-2xl shadow-sm text-lg font-medium text-white bg-green-700 hover:bg-green-800">
@@ -128,7 +131,7 @@ const SignIn = () => {
             <div className='absolute bg-black bg-opacity-30 h-full w-full'>
                 <div className='flex items-center gap-2 p-8'>        
                 <h1 className='logo'>BH</h1>
-                <p className='logo-text'>
+                <p className='logo-text text-white'>
                     BetaHouse
                 </p>
                 </div>

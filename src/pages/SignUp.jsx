@@ -170,14 +170,14 @@ import { useAuth } from '../context/Auth';
             </button>
           </div>
           <p className="mt-6 text-center text-lg text-gray-500">
-            Already have an account? <Link to="/login" className="text-green-600 hover:text-green-800">Sign in</Link>
+            Already have an account? <Link to="/" className="text-green-600 hover:text-green-800">Sign in</Link>
           </p>
         </div>
         <div className="login hidden lg:flex lg:w-1/2 bg-cover rounded-lg relative">
           <div className='absolute bg-black bg-opacity-30 h-full w-full'>
             <div className='flex items-center gap-2 p-8'>
               <h1 className='logo'>BH</h1>
-              <p className='logo-text'>BetaHouse</p>
+              <p className='logo-text text-white'>BetaHouse</p>
             </div>
           </div>
         </div>

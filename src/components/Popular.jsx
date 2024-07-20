@@ -1,6 +1,6 @@
 import React from "react";
-import PropertyCarousel from "./PorpularCaro";
 import { popularDb } from "../db/data";
+import PropertyCarousel from "./PorpularCaro";
 
 const Popular = () => {
   return (

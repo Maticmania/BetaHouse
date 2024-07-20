@@ -5,8 +5,9 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Home from "./pages/Home";
 import toast, { Toaster } from 'react-hot-toast';
-import Profile from "./components/Profile";
 import UserProfile from "./components/Profile";
+import ResetPassword from "./components/ResetPassword";
+import ForgotPassword from "./components/ForgotPassword";
 
 
 
@@ -23,6 +24,8 @@ function App() {
           <Route path="/register" element={<SignUp />} />
           <Route path="/" element={<SignIn />} />
           <Route path="/profile" element={<UserProfile />} />
+          <Route path="/forget-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
         </Routes>
       </BrowserRouter>
     </>

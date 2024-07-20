@@ -39,3 +39,11 @@ body{
 
   
   
+.slick-arrow {
+    transition: background-color 0.3s ease;
+  }
+  
+  .slick-arrow:hover {
+    background-color: green !important;
+  }
+  
