@@ -7,6 +7,10 @@ import product6 from "../assets/images/product6.png";
 import product7 from "../assets/images/product7.png";
 import product8 from "../assets/images/product8.png";
 import product9 from "../assets/images/product9.png";
+import discover1 from "../assets/images/dicover1.jpeg";
+import discover2 from "../assets/images/discover2.jpeg";
+import discover3 from "../assets/images/discover3.jpeg";
+import discover4 from "../assets/images/dicover4.jpeg";
 
 export const properties = [
   {
@@ -110,7 +114,7 @@ export const popularDb = [
     bedrooms: 6,
     bathrooms: 3,
     location: "Victoria Island, Lagos",
-    image: product1,
+    image: discover1,
   },
   {
     id: 2,
@@ -119,7 +123,7 @@ export const popularDb = [
     bedrooms: 6,
     bathrooms: 3,
     location: "Victoria Island, Lagos",
-    image: product4,
+    image: discover2,
   },
   {
     id: 3,
@@ -128,7 +132,7 @@ export const popularDb = [
     bedrooms: 6,
     bathrooms: 3,
     location: "Victoria Island, Lagos",
-    image: product3,
+    image: discover3,
   },
   {
     id: 4,
@@ -137,7 +141,7 @@ export const popularDb = [
     bedrooms: 6,
     bathrooms: 3,
     location: "Victoria Island, Lagos",
-    image: product2,
+    image: discover4,
   },
   // Add more properties as needed
 ];

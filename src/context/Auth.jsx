@@ -1,6 +1,5 @@
-// src/context/AuthContext.js
-import { useState, createContext, useContext, useEffect } from "react";
-import axios from "axios";
+import { useState, createContext, useContext, useEffect } from 'react';
+import axios from 'axios';
 
 // Create context
 const AuthContext = createContext();
@@ -9,7 +8,9 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     user: null,
-    token: "",
+    token: '',
+    success: false,
+    message: ''
   });
 
   // Set base URL for axios
@@ -17,79 +18,61 @@ const AuthProvider = ({ children }) => {
 
   // Update axios headers when auth changes
   useEffect(() => {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${auth?.token}`;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${auth?.token}`;
   }, [auth?.token]);
 
   // Retrieve the user from local storage
   useEffect(() => {
-    const data = localStorage.getItem("auth");
+    const data = localStorage.getItem('auth');
     if (data) {
       const parsedData = JSON.parse(data);
-      setAuth({ ...auth, user: parsedData.user, token: parsedData.token });
+      setAuth({
+        user: parsedData.user,
+        token: parsedData.token,
+        success: parsedData.success,
+        message: parsedData.message
+      });
     }
   }, []);
 
   const login = async (formData) => {
     try {
-      const { data } = await axios.post("/auth/login", {
-        email: formData.email,
-        password: formData.password,
-      });
+      const { data } = await axios.post('/auth/login', formData);
 
       if (!data?.error) {
-        // Login successful
-        setAuth({ user: data.user, token: data.token });
-        localStorage.setItem("auth", JSON.stringify(data));
+        setAuth({ user: data.user, token: data.token, success: data.success, message: data.message });
+        localStorage.setItem('auth', JSON.stringify(data));
         return data;
       } else {
-        // Login failed
         return false;
       }
     } catch (error) {
-      console.log("Login error:", error?.response?.data?.message);
-      if (error?.response && error?.response?.data && error?.response?.data?.message) {
-        throw new Error(error?.response?.data?.message);
-      } else {
-        throw new Error("An error occurred while logging in");
-      }
-    } 
+      console.log('Login error:', error?.response?.data?.message);
+      throw new Error(error?.response?.data?.message || 'An error occurred while logging in');
+    }
   };
 
   const signup = async (formData) => {
     try {
-      const { data } = await axios.post("/auth/register", {
-       firstName: formData.firstName,
-       lastName: formData.lastName,
-       email: formData.email,
-       password: formData.password
-      });
+      const { data } = await axios.post('/auth/register', formData);
 
       if (!data.error) {
-        setAuth({
-          user: data?.user,
-          token: data?.token,
-        });
-        // Save signup data to local storage
-        localStorage.setItem("auth", JSON.stringify(data));
+        setAuth({ user: data.user, token: data.token, success: data.success, message: data.message });
+        localStorage.setItem('auth', JSON.stringify(data));
       } else {
         console.log(data.error);
       }
 
       return data;
     } catch (error) {
-      console.log("Signup Error:", error);
-      if (error?.response && error?.response?.data && error?.response?.data?.message) {
-        throw new Error(error?.response?.data?.message);
-      } else {
-        throw new Error("An error occurred while logging in");
-      }
+      console.log('Signup Error:', error);
+      throw new Error(error?.response?.data?.message || 'An error occurred while signing up');
     }
   };
 
   const logout = () => {
-    // Clear auth data
-    localStorage.removeItem("auth");
-    setAuth({ user: null, token: "" });
+    localStorage.removeItem('auth');
+    setAuth({ user: null, token: '', success: false, message: '' });
   };
 
   return (

@@ -13,6 +13,7 @@ import NotFound from "./components/NotFound";
 import PrivateRoutes from "./context/PrivateRoutes";
 import PublicRoutes from "./context/PublicRoutes"; 
 import { AuthProvider } from "./context/Auth"; 
+import OAuthCallback from "./context/OAuthCallback";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<PublicRoutes />}>
+            <Route path="/oauth-callback" element={<OAuthCallback/>}/>
               <Route path="/register" element={<SignUp />} />
               <Route path="/" element={<SignIn />} />
               <Route path="/forget-password" element={<ForgotPassword />} />

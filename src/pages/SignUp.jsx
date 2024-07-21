@@ -1,73 +1,140 @@
+// import React, { useState } from 'react';
+// import { FcGoogle } from "react-icons/fc";
+// import { Link, useNavigate } from 'react-router-dom';
+// import toast from 'react-hot-toast';
+// import { useAuth } from '../context/Auth';
+
+//   const SignUp = () => {
+//     const navigate = useNavigate();
+//     const { signup } = useAuth();
+//     const [loading, setloading] = useState(false)
+//     const [formData, setFormData] = useState({
+//       firstName: 'olaitan',
+//       lastName: 'Toheeb',
+//       email: 'man@gmail.com',
+//       password: '773090',
+//       confirmPassword: '773090',
+//       termsAccepted: true,
+//     });
+  
+//     const [errors, setErrors] = useState({});
+  
+//     const validate = () => {
+//       const newErrors = {};
+  
+//       if (!formData.firstName) newErrors.firstName = 'First name is required';
+//       if (!formData.lastName) newErrors.lastName = 'Last name is required';
+//       if (!formData.email) newErrors.email = 'Email is required';
+//       if (!formData.password) newErrors.password = 'Password is required';
+//       if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
+//       if (!formData.termsAccepted) newErrors.termsAccepted = 'You must accept the terms and conditions';
+  
+//       return newErrors;
+//     };
+  
+//     const handleChange = (e) => {
+//       const { name, value, checked, type } = e.target;
+//       setFormData({
+//         ...formData,
+//         [name]: type === 'checkbox' ? checked : value,
+//       });
+//     };
+  
+//     const handleSubmit = async (e) => {
+//       e.preventDefault();
+//       const validationErrors = validate();
+//       setErrors(validationErrors);
+  
+//       if (Object.keys(validationErrors).length === 0) {
+//         try {
+          
+//           setloading(true)
+//           const data = await signup(formData);
+//           console.log(formData);
+//           if (!data?.error) {
+//             toast.success("Registration successful");
+//             setTimeout(() => {
+//               navigate("/home");
+//             }, 5000);
+//           } else {
+//             toast.error("Registration failed");
+//           }
+//         } catch (err) {
+//           console.log(err);
+//           toast.error(err.message);
+//         }finally{
+//           setloading(false)
+//         }
+//       }
+//     };
 import React, { useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useAuth } from '../context/Auth';
 
-  const SignUp = () => {
-    const navigate = useNavigate();
-    const { signup } = useAuth();
-    const [loading, setloading] = useState(false)
-    const [formData, setFormData] = useState({
-      firstName: 'olaitan',
-      lastName: 'Toheeb',
-      email: 'man@gmail.com',
-      password: '773090',
-      confirmPassword: '773090',
-      termsAccepted: true,
+const SignUp = () => {
+  const navigate = useNavigate();
+  const { signup } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    termsAccepted: false,
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.firstName) newErrors.firstName = 'First name is required';
+    if (!formData.lastName) newErrors.lastName = 'Last name is required';
+    if (!formData.email) newErrors.email = 'Email is required';
+    if (!formData.password) newErrors.password = 'Password is required';
+    if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
+    if (!formData.termsAccepted) newErrors.termsAccepted = 'You must accept the terms and conditions';
+    return newErrors;
+  };
+
+  const handleChange = (e) => {
+    const { name, value, checked, type } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value,
     });
-  
-    const [errors, setErrors] = useState({});
-  
-    const validate = () => {
-      const newErrors = {};
-  
-      if (!formData.firstName) newErrors.firstName = 'First name is required';
-      if (!formData.lastName) newErrors.lastName = 'Last name is required';
-      if (!formData.email) newErrors.email = 'Email is required';
-      if (!formData.password) newErrors.password = 'Password is required';
-      if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
-      if (!formData.termsAccepted) newErrors.termsAccepted = 'You must accept the terms and conditions';
-  
-      return newErrors;
-    };
-  
-    const handleChange = (e) => {
-      const { name, value, checked, type } = e.target;
-      setFormData({
-        ...formData,
-        [name]: type === 'checkbox' ? checked : value,
-      });
-    };
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      const validationErrors = validate();
-      setErrors(validationErrors);
-  
-      if (Object.keys(validationErrors).length === 0) {
-        try {
-          
-          setloading(true)
-          const data = await signup(formData);
-          console.log(formData);
-          if (!data?.error) {
-            toast.success("Registration successful");
-            setTimeout(() => {
-              navigate("/home");
-            }, 5000);
-          } else {
-            toast.error("Registration failed");
-          }
-        } catch (err) {
-          console.log(err);
-          toast.error(err.message);
-        }finally{
-          setloading(false)
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+      try {
+        setLoading(true);
+        const data = await signup(formData);
+        if (!data?.error) {
+          toast.success("Registration successful");
+          setTimeout(() => {
+            navigate("/home");
+          }, 5000);
+        } else {
+          toast.error("Registration failed");
         }
+      } catch (err) {
+        toast.error(err.message);
+      } finally {
+        setLoading(false);
       }
-    };
-  
+    }
+  };
+
+  const handleGoogleLogin = () => {
+    window.location.href = 'http://localhost:8080/api/auth/google'; // Replace with your backend URL
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -170,7 +237,10 @@ import { useAuth } from '../context/Auth';
               <span className="text-lg">or</span>
               <span className='border-t border-slate-300 w-1/2' />
             </p>
-            <button className="w-full flex justify-center items-center gap-2 py-4 px-4 border-2 border-gray-500 rounded-2xl shadow-sm text-lg font-medium text-gray-700 bg-white hover:bg-gray-50">
+            <button
+              className="w-full flex justify-center items-center gap-2 py-4 px-4 border-2 border-gray-500 rounded-2xl shadow-sm text-lg font-medium text-gray-700 bg-white hover:bg-gray-50"
+              onClick={handleGoogleLogin}
+            >
               <FcGoogle />
               Continue with Google
             </button>

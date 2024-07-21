@@ -4,6 +4,7 @@ import { useAuth } from "../context/Auth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Footer from "../pages/Footer";
+import CreateProduct from "../pages/AdminPages/Product";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -104,16 +105,16 @@ const UserProfile = () => {
       .then((response) => {
         toast.success("Password updated successfully");
         setShowPasswordModal(false);
-        setPasswords({ currentPassword:"", newPassword: "" });
+        setPasswords({ currentPassword: "", newPassword: "" });
         setConfirmPassword("");
       })
       .catch((error) => {
         console.log(error?.response?.data?.message);
         console.log("Error updating the password!", error);
         if (error?.response?.data?.success === false) {
-            toast.error(error?.response?.data?.message);
+          toast.error(error?.response?.data?.message);
         } else {
-            toast.error("There was an error updating the password!");
+          toast.error("There was an error updating the password!");
         }
       });
   };
@@ -189,6 +190,12 @@ const UserProfile = () => {
               onClick={() => setShowPasswordModal(true)}
             >
               Change Password
+            </button>
+            <button
+              type="button"
+              className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 mt-4"
+            >
+              <a href="/create">Create product</a>
             </button>
           </form>
         </div>
@@ -270,6 +277,7 @@ const UserProfile = () => {
           </div>
         </div>
       )}
+      <CreateProduct/>
       <Footer />
     </>
   );
