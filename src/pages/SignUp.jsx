@@ -64,7 +64,7 @@ const SignUp = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = 'http://localhost:8080/api/auth/google'; // Replace with your backend URL
+    window.location.href = 'https://betahouse-api.onrender.com/api/auth/google'; // Replace with your backend URL
   };
 
   return (

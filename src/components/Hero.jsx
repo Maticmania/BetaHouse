@@ -2,22 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import "../App.css";
+import { propertyTypes } from "../db/data";
 
-const propertyTypes = [
-  "Bungalow",
-  "Duplex",
-  "Terrace",
-  "Penthouse",
-  "Detached house",
-  "Mansion",
-  "Apartment",
-  "Traditional houses",
-  "Apartments or flats",
-  "Duplex design",
-  "Townhouse",
-  "Detached",
-  "Maisonette",
-];
 
 const Hero = () => {
   const [bedroomCount, setBedroomCount] = useState(0);
