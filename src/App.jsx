@@ -15,13 +15,11 @@ import PublicRoutes from "./context/PublicRoutes";
 import { AuthProvider } from "./context/Auth"; 
 import OAuthCallback from "./context/OAuthCallback";
 import SearchPage from "./components/SearchPage";
-import { ScrollToTop } from "./components/Tools/ScrollBacktoTop";
 
 function App() {
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
-      <ScrollToTop/>
       <AuthProvider>
         <BrowserRouter>
           <Routes>
