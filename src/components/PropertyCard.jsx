@@ -59,7 +59,7 @@ const PropertyCard = ({ property }) => {
         <div className="flex border-t h-[90px] items-center justify-between">
           <p className="mt-2 text-xl font-bold ">
             &#x20A6;{property.price.toLocaleString()}
-            {property.category === "rent" && "/1 Year"}
+            {property.category === "Rent" && "/1 Year"}
           </p>
           <BiTransfer className="text-2xl text-[#666666]" />
           <GoShareAndroid className="text-2xl text-[#666666]" />
