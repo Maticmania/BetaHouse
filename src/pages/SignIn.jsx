@@ -58,10 +58,12 @@ const SignIn = () => {
       }
     }
   };
+  // const handleGoogleLogin = () => {
+  //   window.location.href = "http://localhost:8080/api/auth/google"; // Replace with your backend URL
+  // };
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:8080/api/auth/google"; // Replace with your backend URL
+    window.location.href = 'https://betahouse-api.onrender.com/api/auth/google'; // Replace with your backend URL
   };
-
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="bg-white rounded-lg w-full flex flex-col-reverse lg:flex-row h-full">
