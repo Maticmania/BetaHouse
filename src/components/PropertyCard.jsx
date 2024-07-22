@@ -10,7 +10,7 @@ import { GrLink } from "react-icons/gr";
 import dummyImage from '../assets/images/dummy.avif';
 
 const PropertyCard = ({ property }) => {
-  const propertyImage = property.image && property.image.length > 0 ? property.image[0] : dummyImage;
+  const propertyImage = property?.images && property?.images?.length > 0 ? property?.images[0].url : dummyImage;
 
   return (
     <div className="border rounded-lg overflow-hidden shadow-sm min-h-[540px]" key={property._id}>

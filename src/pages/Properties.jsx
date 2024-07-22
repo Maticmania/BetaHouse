@@ -8,9 +8,15 @@ import axios from "axios";
 const Properties = () => {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(
+    parseInt(localStorage.getItem("currentPage")) || 1
+  );
   const [totalPages, setTotalPages] = useState(1);
+  const [total, setTotal] = useState(15);
   const [currentMessage, setCurrentMessage] = useState(0);
+  const [sortParams, setSortParams] = useState(
+    JSON.parse(localStorage.getItem("sortParams")) || { sortBy: "title", order: "asc" }
+  );
   const propertiesPerPage = 12;
   const loadingMessages = [
     "Wait a moment...",
@@ -25,41 +31,53 @@ const Properties = () => {
     const fetchProperties = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/product/all`, {
+        const response = await axios.get(`https://betahouse-api.onrender.com/api/product/all`, {
           params: {
             page: currentPage,
             limit: propertiesPerPage,
+            sortBy: sortParams.sortBy,
+            order: sortParams.order,
           },
         });
 
         const { products, pagination } = response.data;
         setProperties(products);
         setTotalPages(pagination.totalPages);
-        setLoading(false);
+        setTotal(pagination.totalCount);
       } catch (error) {
         console.error("Error fetching properties:", error);
+      } finally {
         setLoading(false);
       }
     };
 
     fetchProperties();
-    return () => clearInterval(interval); // Clean up interval on unmount
+  }, [currentPage, sortParams]);
+
+  useEffect(() => {
+    localStorage.setItem("currentPage", currentPage);
   }, [currentPage]);
+
+
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  // Set up a message interval for loading
+  const handleSortChange = (sortParams) => {
+    setSortParams(sortParams);
+    setCurrentPage(1); // Reset to first page on sort change
+  };
+
   const interval = setInterval(() => {
     setCurrentMessage((prev) => (prev + 1) % loadingMessages.length);
-  }, 3000);
+  }, 5000);
 
   return (
     <div id="properties">
       <Header />
       <div className="mt-[40px] xl:px-20">
-        <FilterBar />
+        <FilterBar totalPages={totalPages} total={total} limit={propertiesPerPage} onSortChange={handleSortChange} />
         {loading ? (
           <div className="min-h-screen flex items-center justify-center">
             <div className="text-center">

@@ -29,7 +29,7 @@ const SearchPage = () => {
     // Set up a message interval for loading
     const interval = setInterval(() => {
       setCurrentMessage((prev) => (prev + 1) % loadingMessages.length);
-    }, 3000);
+    }, 5000);
 
     // Fetch search results
     axios

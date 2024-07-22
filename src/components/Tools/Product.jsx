@@ -96,6 +96,7 @@ const CreateProduct = () => {
   return (
     <div className="max-w-2xl mx-auto p-6 rounded-lg">
       <h1 className="text-2xl font-bold mb-4">Create New Product</h1>
+      <p><span className=" font-medium">Comment: </span>This is not admin dashborad i just use this to create product</p>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="pt-2">
           {/* Display uploaded images */}
