@@ -14,6 +14,7 @@ import PrivateRoutes from "./context/PrivateRoutes";
 import PublicRoutes from "./context/PublicRoutes"; 
 import { AuthProvider } from "./context/Auth"; 
 import OAuthCallback from "./context/OAuthCallback";
+import SearchPage from "./components/SearchPage";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route element={<PrivateRoutes />}>
               <Route path="/home" element={<Home />} />
               <Route path="/profile" element={<UserProfile />} />
+              <Route path="/search" element={<SearchPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

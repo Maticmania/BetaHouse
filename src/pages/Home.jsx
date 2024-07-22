@@ -3,7 +3,7 @@ import Hero from "../components/Hero";
 import Properties from "./Properties";
 import Popular from "../components/Popular";
 import Footer from "./Footer";
-import CreateProduct from "./AdminPages/Product";
+import CreateProduct from "../components/Tools/Product";
 
 const Home = () => {
 

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import MinHeader from './Tools/MinHeader';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -41,6 +42,8 @@ const ForgotPassword = () => {
   };
 
   return (
+    <>
+    <MinHeader/>
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white shadow-md rounded-lg w-full max-w-md p-8">
         <h2 className="text-2xl font-bold mb-2 text-center">Forgot Password</h2>
@@ -69,6 +72,7 @@ const ForgotPassword = () => {
         </form>
       </div>
     </div>
+    </>
   );
 }
 

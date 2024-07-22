@@ -145,3 +145,19 @@ export const popularDb = [
   },
   // Add more properties as needed
 ];
+
+
+export const propertyTypes = [
+  "Bungalow",
+  "Duplex",
+  "Terrace",
+  "Penthouse",
+  "Detached house",
+  "Mansion",
+  "Apartment",
+  "Traditional houses",
+  "Flats",
+  "Townhouse",
+  "Detached",
+  "Maisonette"
+];

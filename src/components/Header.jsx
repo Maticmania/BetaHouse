@@ -11,7 +11,7 @@ const Header = () => {
   const [lastName, setLastName] = useState("");
   const [image, setImage] = useState("");
   const [headerClass, setHeaderClass] = useState(
-    "h-[120px] w-full flex justify-between items-center px-4 md:px-8 backdrop-blur-sm fixed z-50 container mx-auto"
+    "h-[120px] w-full flex justify-between items-center px-4 md:px-8 backdrop-blur-sm fixed z-50 container mx-auto w-full"
   );
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { auth, logout } = useAuth();
@@ -59,11 +59,11 @@ const Header = () => {
     const handleScroll = () => {
       if (window.scrollY > 600) {
         setHeaderClass(
-          "h-[120px] w-full flex justify-between items-center px-4 md:px-8 bg-white shadow-md text-black fixed z-50 container mx-auto"
+          "h-[120px] w-full flex justify-between items-center px-4 md:px-8 bg-white shadow-md text-black fixed z-50 container mx-auto w-full"
         );
       } else {
         setHeaderClass(
-          "h-[120px] w-full flex justify-between items-center px-4 md:px-8 backdrop-blur-[2px] fixed z-50 container mx-auto"
+          "h-[120px] w-full flex justify-between items-center px-4 md:px-8 backdrop-blur-[2px] fixed z-50 container mx-auto w-full"
         );
       }
     };
@@ -83,9 +83,9 @@ const Header = () => {
           <p className="logo-text md:hidden xl:block">BetaHouse</p>
         </div>
         <ul className="hidden md:flex gap-8 md:gap-4 xl:gap-8 font-medium text-xl md:text-lg xl:text-xl">
-          <a href="#">
+          <Link to="/">
             <li className="h-[50px] flex items-center cursor-pointer">Home</li>
-          </a>
+          </Link>
           <a href="#properties">
             <li className="h-[50px] flex items-center border-b border-gray-200 cursor-pointer">
               Properties

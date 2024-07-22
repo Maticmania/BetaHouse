@@ -3,6 +3,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { FaPlus } from "react-icons/fa";
 import { IoImages } from "react-icons/io5";
+import { propertyTypes } from "../../db/data";
+
 
 const CreateProduct = () => {
   const [product, setProduct] = useState({
@@ -15,6 +17,7 @@ const CreateProduct = () => {
     images: [],
     category: "",
     price: "",
+    propertyType: "", // Added propertyType to the state
   });
   const [loading, setLoading] = useState(false);
   const [imageFiles, setImageFiles] = useState([]);
@@ -66,6 +69,7 @@ const CreateProduct = () => {
       formData.append("state", product.address.state);
       formData.append("category", product.category);
       formData.append("price", product.price);
+      formData.append("propertyType", product.propertyType); // Added propertyType to formData
 
       imageFiles.forEach((file) => {
         formData.append("images", file);
@@ -90,7 +94,7 @@ const CreateProduct = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6  rounded-lg">
+    <div className="max-w-2xl mx-auto p-6 rounded-lg">
       <h1 className="text-2xl font-bold mb-4">Create New Product</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="pt-2">
@@ -148,7 +152,8 @@ const CreateProduct = () => {
           </label>
         </div>
         {/* Rest of the form fields */}
-        <div className="flex flex-col">
+        <div className="flex justify-between items-center">
+          <div className="flex flex-col">
           <label htmlFor="title" className="text-lg font-semibold mb-2">
             Title
           </label>
@@ -159,8 +164,31 @@ const CreateProduct = () => {
             value={product.title}
             onChange={handleChange}
             required
-            className="border border-gray-300 p-2 rounded-lg"
+            className="border border-gray-300 p-2 rounded-lg w-full"
           />
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="propertyType" className="text-lg font-semibold mb-2">
+              Property Type
+            </label>
+            <select
+              id="propertyType"
+              name="propertyType"
+              value={product.propertyType}
+              onChange={handleChange}
+              required
+              className="border border-gray-300 p-2 rounded-lg w-full"
+            >
+              <option value="" className=" cursor-pointer">Select a property type</option>
+              {propertyTypes.map((type, index) => (
+                <option key={index} value={type} className=" cursor-pointer">
+                  {type}
+                </option>
+              ))}
+            </select>
+          </div>
+
+
         </div>
         <div className="flex flex-col">
           <label htmlFor="description" className="text-lg font-semibold mb-2">
@@ -266,45 +294,47 @@ const CreateProduct = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-        <div className="flex flex-col">
-          <label htmlFor="category" className="text-lg font-semibold mb-2">
-            Category
-          </label>
-          <select
-            id="category"
-            name="category"
-            value={product.category}
-            onChange={handleChange}
-            required
-            className="border border-gray-300 p-2 rounded-lg"
-          >
-            <option value="">Select Category</option>
-            <option value="sale">Sale</option>
-            <option value="rent">Rent</option>
-          </select>
+          <div className="flex flex-col">
+            <label htmlFor="category" className="text-lg font-semibold mb-2">
+              Category
+            </label>
+            <select
+              id="category"
+              name="category"
+              value={product.category}
+              onChange={handleChange}
+              required
+              className="border border-gray-300 p-2 rounded-lg"
+            >
+              {/* Add category options here */}
+              <option value="">Select a category</option>
+              <option value="Sale">For Sale</option>
+              <option value="Rent">For Rent</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="price" className="text-lg font-semibold mb-2">
+              Price
+            </label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              value={product.price}
+              onChange={handleChange}
+              required
+              className="border border-gray-300 p-2 rounded-lg"
+            />
+          </div>
         </div>
 
-        <div className="flex flex-col">
-          <label htmlFor="price" className="text-lg font-semibold mb-2">
-            Price
-          </label>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            value={product.price}
-            onChange={handleChange}
-            required
-            className="border border-gray-300 p-2 rounded-lg"
-          />
-        </div>
-</div>
         <button
           type="submit"
-          className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
           disabled={loading}
+          className={`p-4 text-white rounded-xl ${loading ? "bg-green-700 " : "bg-gray-800"} w-full`}
         >
-          {loading ? "Loading..." : "Create Product"}
+          {loading ? "Creating..." : "Create Product"}
         </button>
       </form>
     </div>

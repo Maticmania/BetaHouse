@@ -4,7 +4,7 @@ import { useAuth } from "../context/Auth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Footer from "../pages/Footer";
-import CreateProduct from "../pages/AdminPages/Product";
+import CreateProduct from "./Tools/Product";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -174,7 +174,7 @@ const UserProfile = () => {
                 className="w-full py-2 px-4 bg-gray-600 text-white rounded-md hover:bg-gray-700"
                 onClick={() => navigate("/home")}
               >
-                Go Back
+                Go Home
               </button>
               <button
                 type="submit"
@@ -186,16 +186,10 @@ const UserProfile = () => {
             </div>
             <button
               type="button"
-              className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 mt-4"
+              className="w-full py-2 px-4 bg-red-600 text-white rounded-md hover:bg-red-700 mt-4"
               onClick={() => setShowPasswordModal(true)}
             >
               Change Password
-            </button>
-            <button
-              type="button"
-              className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 mt-4"
-            >
-              <a href="/create">Create product</a>
             </button>
           </form>
         </div>

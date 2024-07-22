@@ -7,13 +7,16 @@ import { GoShareAndroid } from "react-icons/go";
 import { BiTransfer } from "react-icons/bi";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { GrLink } from "react-icons/gr";
+import dummyImage from '../assets/images/dummy.avif';
 
 const PropertyCard = ({ property }) => {
+  const propertyImage = property.image && property.image.length > 0 ? property.image[0] : dummyImage;
+
   return (
-    <div className="border rounded-lg overflow-hidden shadow-lg min-h-[540px]">
+    <div className="border rounded-lg overflow-hidden shadow-sm min-h-[540px]" key={property._id}>
       <div
         className="relative w-full h-[297px] bg-cover bg-center"
-        style={{ backgroundImage: `url(${property.image})` }}
+        style={{ backgroundImage: `url(${propertyImage})` }}
       >
         <div className="absolute inset-0 bg-black opacity-25"></div>
         <div className="relative h-full w-full flex flex-col justify-between p-4">
@@ -22,14 +25,14 @@ const PropertyCard = ({ property }) => {
               Featured
             </button>
             <button className="p-2 text-white bg-[#d3d3d3b2] rounded-sm">
-              {property.availability}
+              For {property.category}
             </button>
           </div>
           <div className="w-full text-right mb-4 flex gap-4 justify-end">
             <span className="p-4 bg-[#d3d3d3b2] text-white rounded-lg cursor-pointer">
               <GrLink />
             </span>
-            <span className="p-4 bg-[#d3d3d3b2] text-white  rounded-lg cursor-pointer">
+            <span className="p-4 bg-[#d3d3d3b2] text-white rounded-lg cursor-pointer">
               <IoVideocam />
             </span>
             <span className="p-4 bg-[#d3d3d3b2] text-white rounded-lg cursor-pointer">
@@ -41,7 +44,7 @@ const PropertyCard = ({ property }) => {
       <div className="p-4 px-6 space-y-4">
         <h3 className="text-xl font-semibold">{property.title}</h3>
         <p className="text-[#666666] flex items-center gap-2">
-          <MdLocationOn /> {property.location}
+          <MdLocationOn /> {property.address.city}, {property.address.state}
         </p>
         <div className="flex gap-8 text-[#666666] items-center mt-4">
           <div className="flex items-center space-x-2">
@@ -56,7 +59,7 @@ const PropertyCard = ({ property }) => {
         <div className="flex border-t h-[90px] items-center justify-between">
           <p className="mt-2 text-xl font-bold ">
             &#x20A6;{property.price.toLocaleString()}
-            {property.availability === "For Rent" && "/1 Year"}
+            {property.category === "rent" && "/1 Year"}
           </p>
           <BiTransfer className="text-2xl text-[#666666]" />
           <GoShareAndroid className="text-2xl text-[#666666]" />

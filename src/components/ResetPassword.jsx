@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import MinHeader from "./Tools/MinHeader";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
@@ -33,6 +34,8 @@ const ResetPassword = () => {
   };
 
   return (
+    <>
+    <MinHeader/>
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
         <h2 className="text-2xl font-bold mb-4">Reset Your Password</h2>
@@ -84,6 +87,7 @@ const ResetPassword = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 
