@@ -75,7 +75,6 @@ const Properties = () => {
 
   return (
     <div id="properties">
-      <Header />
       <div className="mt-[40px] xl:px-20">
         <FilterBar totalPages={totalPages} total={total} limit={propertiesPerPage} onSortChange={handleSortChange} />
         {loading ? (
