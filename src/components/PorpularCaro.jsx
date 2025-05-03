@@ -73,7 +73,7 @@ const PropertyCarousel = ({ properties }) => {
   return (
     <div className="py-8 px-4 md:px-10 xl:px-20 ">
       <h2 className=" text-2xl md:text-5xl font-semibold text-center  mb-12">Discover Our Popular Properties</h2>
-      <Slider {...settings} className="gap-8">
+      <Slider {...settings} className="gap-8 container mx-auto">
         {properties.map((property) => (
           <div key={property.id} className="px-2"> {/* Add padding to the individual slides */}
             <PopularCard property={property} />

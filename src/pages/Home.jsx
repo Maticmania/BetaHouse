@@ -6,13 +6,14 @@ import Footer from "./Footer";
 import CreateProduct from "../components/Tools/Product";
 
 const Home = () => {
-
   return (
-    <div className="container mx-auto">
+    <div className="">
       <Hero />
       <Properties />
       <Popular />
-      <Footer />
+      <div className="bg-[#035A33]">
+        <Footer />
+      </div>
     </div>
   );
 };

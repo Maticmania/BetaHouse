@@ -59,11 +59,11 @@ const Header = () => {
     const handleScroll = () => {
       if (window.scrollY > 600) {
         setHeaderClass(
-          "h-[120px] w-full flex justify-between items-center px-4 md:px-8 bg-white shadow-md text-black fixed z-50 container mx-auto w-full"
+          "h-[120px] w-full flex justify-between items-center px-4 md:px-[5%] bg-white shadow-md text-black fixed z-50  w-full"
         );
       } else {
         setHeaderClass(
-          "h-[120px] w-full flex justify-between items-center px-4 md:px-8 backdrop-blur-[2px] fixed z-50 container mx-auto w-full"
+          "h-[120px] w-full flex justify-between items-center px-4 md:px-[5%] backdrop-blur-[2px] fixed z-50  w-full"
         );
       }
     };
@@ -78,10 +78,10 @@ const Header = () => {
   return (
     <>
       <header className={headerClass}>
-        <div className="flex items-center gap-2 cursor-pointer">
+        <Link to="/" className="flex items-center gap-2 cursor-pointer">
           <h1 className="logo">BH</h1>
           <p className="logo-text md:hidden xl:block">BetaHouse</p>
-        </div>
+        </Link>
         <ul className="hidden md:flex gap-8 md:gap-4 xl:gap-8 font-medium text-xl md:text-lg xl:text-xl">
           <Link to="/">
             <li className="h-[50px] flex items-center cursor-pointer">Home</li>

@@ -24,10 +24,10 @@ const Hero = () => {
   };
 
   return (
-    <div className="min-h-screen xl:min-h-[680px] w-full hero bg-cover relative">
+    <div className="min-h-screen  w-full hero bg-cover relative ">
       <div className="absolute bg-black bg-opacity-50 h-full w-full text-white">
         <Header />
-        <div className="flex flex-col justify-center items-center h-full gap-16">
+        <div className="flex flex-col justify-center items-center h-full gap-16 container mx-auto">
           <div className="w-full text-center flex justify-center flex-col items-center gap-8 mt-8">
             <h1 className="text-6xl font-bold">Browse Our Properties</h1>
             <p className="text-[26px] font-light w-[95%] md:w-[55%]">
@@ -44,7 +44,7 @@ const Hero = () => {
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   placeholder="e.g., Gbagada"
-                  className="ml-4 w-32"
+                  className="ml-4 w-32 outline-none"
                 />
               </div>
               <div className="flex flex-col items-center border-r border-[#CAD4DE]">
@@ -52,9 +52,9 @@ const Hero = () => {
                 <select
                   value={propertyType}
                   onChange={(e) => setPropertyType(e.target.value)}
-                  className="ml-4 w-auto cursor-pointer p-2 rounded-lg"
+                  className="ml-4 w-auto cursor-pointer p-2 rounded-lg outline-none"
                 >
-                  <option value="">Select Property Type</option>
+                  <option value="" className="outline-none">Select Property Type</option>
                   {propertyTypes.map((type, index) => (
                     <option key={index} value={type}>
                       {type}

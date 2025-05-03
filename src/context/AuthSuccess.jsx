@@ -21,7 +21,7 @@ const AuthSuccess = () => {
           });
           setAuth({ user: data.user, token });
           localStorage.setItem('auth', JSON.stringify({ user: data.user, token }));
-          navigate('/home');
+          navigate('/');
         } catch (error) {
           console.log("Error fetching user data:", error);
           navigate('/login');

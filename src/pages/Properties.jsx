@@ -75,7 +75,7 @@ const Properties = () => {
 
   return (
     <div id="properties">
-      <div className="mt-[40px] xl:px-20">
+      <div className="mt-[40px] xl:px-20 container mx-auto">
         <FilterBar totalPages={totalPages} total={total} limit={propertiesPerPage} onSortChange={handleSortChange} />
         {loading ? (
           <div className="min-h-screen flex items-center justify-center">

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const MinHeader = () => {
   return (
-    <div className='h-[100px] flex justify-between items-center px-4 md:px-8 fixed z-50 container mx-auto w-full bg-white'>
+    <div className='h-[100px] flex justify-between items-center px-4 md:px-8 fixed z-50  w-full bg-white'>
       <div className="flex items-center gap-2 cursor-pointer">
         <h1 className="logo">BH</h1>
       </div>

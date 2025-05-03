@@ -4,7 +4,7 @@ import { MdLocationOn, MdPhone, MdEmail } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#035A33] text-white py-8 px-4 xl:px-20 xl:min-h-[540px] flex flex-col justify-evenly" id="footer">
+    <footer className="bg-[#035A33] container mx-auto text-white py-8 px-4 xl:px-20  xl:min-h-[540px] flex flex-col justify-evenly" id="footer">
       <div className="flex justify-between flex-wrap gap-8 items-center">
         {/* Logo and Description */}
         <div className="w-[390px]">
@@ -65,7 +65,7 @@ const Footer = () => {
       </div>
       <div className="mt-8 xl:px-32 border-t border-green-700 pt-4 text-center md:text-left xl:flex justify-between">
         <p className="mb-2 md:mb-0">
-          Copyright 2023 BetaHouse | Designed by Michael.fig
+          Copyright {new Date().getFullYear()} BetaHouse | Designed by Michael.fig | Develop by MaticDev
         </p>
         <p>Privacy Policy</p>
       </div>

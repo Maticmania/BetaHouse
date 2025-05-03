@@ -27,9 +27,9 @@ const OAuthCallback = () => {
         token: token,
         user: user
       }));
-      navigate('/home');
-    } else {
       navigate('/');
+    } else {
+      navigate('/login');
     }
   }, [navigate]);
 
