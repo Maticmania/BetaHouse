@@ -44,7 +44,8 @@ const Header = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/");
+    // reload the page to reflect the logout
+    window.location.reload();
   };
 
   const toggleDropdown = () => {

@@ -50,7 +50,7 @@ const SignUp = () => {
         if (!data?.error) {
           toast.success("Registration successful");
           setTimeout(() => {
-            navigate("/home");
+            navigate("/");
           }, 5000);
         } else {
           toast.error("Registration failed");

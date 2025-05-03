@@ -45,7 +45,7 @@ const SignIn = () => {
         if (!data?.error) {
           toast.success("Login successful");
           setTimeout(() => {
-            navigate("/home");
+            navigate("/");
           }, 1000);
         } else {
           toast.error("Login failed");
